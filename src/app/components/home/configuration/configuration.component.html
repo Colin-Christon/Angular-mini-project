@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="configure-container">
+        <h1>Form Configuration</h1>
+        <form [formGroup]="configForm" (submit)="saveConfiguration()">
+            <div class="form-header">
+                <h5> Show Field</h5>
+                <h5> Required Field</h5>
+            </div>
+            <div
+                #wrapper
+                kendoDragTargetContainer
+                kendoDropTargetContainer
+                dragTargetFilter=".form-body"
+                dropTargetFilter=".form-body"
+                dragTarget = ".form-fields"
+                dropTarget = ".form-fields"
+                [hint]="{ hintClass: 'rowHint'}"
+                [dragData]="dragData"
+                (pointerover)="onPointerMove($event)"
+                (onDrag)="onDrag($event)"
+                (onDragEnd)="onDragEnd($event)"
+                (onDrop)="onDrop($event)"
+            >
+                <div class="form-body"  
+                    *ngFor="let field of fields;
+                    let i = index"
+                    [attr.data-index]="i">
+
+                    <div class="form-fields">
+                        <input type="checkbox" name="field.label" id="field.label" [formControlName]="field.show">
+                        <label>{{field.label.charAt(0).toUpperCase() + field.label.slice(1)}}</label>
+                        <input type="checkbox" name="name-required" id="name-required" [formControlName]="field.required">
+                    </div>
+                </div>
+                <div class="error-message" *ngIf="!validConfiguration">Please select at least one option.</div>
+            </div>
+            <div class="config-button">
+                <!-- <button>Save Changes</button> -->
+                <button kendoButton size="none" class="config-button-custom-size">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
