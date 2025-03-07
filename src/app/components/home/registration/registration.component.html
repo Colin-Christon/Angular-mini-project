@@ -35,6 +35,10 @@
                     {{ field.label.charAt(0).toUpperCase() + field.label.slice(1) }} is required
                   </div>
                   
+                  <div class="error-message" *ngIf="field.label === 'name' && registerForm.get(field.label)?.hasError('pattern') && registerForm.get(field.label)?.touched">
+                    Name should contain only letters
+                  </div>
+
                   <div class="error-message" *ngIf="field.label === 'mobile' && registerForm.get(field.label)?.hasError('pattern') && registerForm.get(field.label)?.touched">
                     Invalid phone number
                   </div>

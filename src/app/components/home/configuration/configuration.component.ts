@@ -68,8 +68,6 @@ export class ConfigurationComponent implements OnInit {
       const movedItem = this.fields[fromIndex];
       this.fields.splice(fromIndex, 1); 
       this.fields.splice(toIndex, 0, movedItem);
-
-      // e.dragTarget.style.background = "white"; 
     }
 
     saveConfiguration(){
@@ -88,7 +86,6 @@ export class ConfigurationComponent implements OnInit {
         this.service.setConfiguration(this.configForm)
         this.service.setConfigElementOrder(this.fields)
         this.router.navigate(['/home/register']);
-      }
-      
+      }  
     }
 }

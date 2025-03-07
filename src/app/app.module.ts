@@ -17,9 +17,6 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { SuccessComponent } from './components/successfulPage/success/success.component';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

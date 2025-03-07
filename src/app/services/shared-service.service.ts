@@ -15,17 +15,6 @@ export class SharedServiceService {
   ]
   
   constructor(private fb:FormBuilder) {
-    // this.formData = this.fb.group({
-    //   showName: [true],
-    //   showMobile:[true],
-    //   showEmail:[true],
-    //   showAddress:[true],
-
-    //   requiredName: [{value:false,disabled:false}],
-    //   requiredMobile: [{value:false,disabled:false}],
-    //   requiredEmail: [{value:false,disabled:false}],
-    //   requiredAddress: [{value:false,disabled:false}]
-    // })
       this.formData = this.fb.group({});
       this.createFormControls();
   }
