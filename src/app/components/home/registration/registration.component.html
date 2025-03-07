@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="register-container">
+        <h1>Member Registration</h1>
+        
+        <form [formGroup]="registerForm" (submit)="registerUser()"> 
+         
+            <div *ngFor="let field of fields">
+                <div *ngIf="this.configData.get(field.show)?.value">
+                  <!-- <label [for]="field.label">{{ field.label.charAt(0).toUpperCase() + field.label.slice(1) }}
+                    <span *ngIf="this.configData.get(field.required)?.value">*</span>
+                    </label> -->
+
+                    <kendo-label
+                      labelCssClass="registration-labels"
+                      [for]="field.label"
+                      [text]="field.label.charAt(0).toUpperCase() + field.label.slice(1)"
+                    >
+                    <span *ngIf="this.configData.get(field.required)?.value">*</span>
+                  </kendo-label>
+                  
+                  <ng-container [ngSwitch]="field.label">
+                    <input *ngSwitchCase="'email'" type="email" [id]="field.label" [placeholder]="field.label" [formControlName]="field.label" />
+                    <textarea *ngSwitchCase="'address'" [id]="field.label" [placeholder]="field.label" [formControlName]="field.label" rows="4" cols="8"></textarea>
+                    <input *ngSwitchDefault type="text" [id]="field.label" [placeholder]="field.label" [formControlName]="field.label" />
+                  </ng-container>
+              
+                  <div class="error-message" *ngIf="(registerForm.get(field.label)?.hasError('required')||registerForm.get(field.label)?.hasError('onlySpaces') ) && (registerForm.get(field.label)?.touched || buttonDisabled)">
+                    {{ field.label.charAt(0).toUpperCase() + field.label.slice(1) }} is required
+                  </div>
+                  
+                  <div class="error-message" *ngIf="field.label === 'mobile' && registerForm.get(field.label)?.hasError('pattern') && registerForm.get(field.label)?.touched">
+                    Invalid phone number
+                  </div>
+
+                  <div class="error-message" *ngIf="field.label === 'email' && registerForm.get(field.label)?.hasError('email') && registerForm.get(field.label)?.touched">
+                    Invalid email format
+                  </div>
+                </div>
+              </div>
+            <div class="register-button">
+                <!-- <button type="submit" [disabled]="this.registerForm.invalid"> Submit</button> -->
+                <!-- <button type="submit"> Submit</button> -->
+                <button type="submit" kendoButton size="large" class="custom-size"> Submit</button>
+            </div>
+ 
+        </form>
+    </div>
+</body>
+</html>

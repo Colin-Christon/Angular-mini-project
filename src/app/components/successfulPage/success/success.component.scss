@@ -1,0 +1,65 @@
+.success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    // background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+    animation: fadeIn 1s ease-in-out;
+  
+    .success-message {
+      background: #fff;
+      padding: 2rem 3rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      animation: slideUp 1s ease-in-out;
+  
+      h1 {
+        font-size: 2.5rem;
+        color: #4CAF50;
+        margin-bottom: 1rem;
+      }
+  
+      p {
+        font-size: 1.2rem;
+        color: #555;
+        margin-bottom: 2rem;
+      }
+  
+      button {
+        background: #4CAF50;
+        color: #fff;
+        border: none;
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+  
+        &:hover {
+          background: #45a049;
+        }
+      }
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  

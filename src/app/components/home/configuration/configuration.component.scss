@@ -1,0 +1,61 @@
+.configure-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1{
+        font-size: 50px;
+    }
+
+    form{
+        background-color: white;
+        width: 300px;
+        height: max-content;
+        border: 1px solid;
+
+        .form-header{
+            display: flex;
+            padding: 10px;
+            justify-content: space-between;
+            color: white;
+            background-color: black;
+        }
+        .form-body{
+            .form-fields{
+                display: flex;
+                justify-content:space-between;
+                padding: 10px;
+                margin: 20px;
+                // background-color: rgb(226, 219, 219);
+                input{
+                    transform: scale(1.5);
+                    accent-color: rgb(13, 13, 17);
+                }
+            }         
+        }
+
+        .error-message{
+            color: red;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .config-button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            .config-button-custom-size{
+                color: white;
+                background-color: black;
+                height: 40px;
+                width: 140px;
+                border-radius: 10px;
+                font-size: 16px;
+            }
+        }
+        
+    }
+}
+
