@@ -49,7 +49,7 @@ export class RegistrationComponent implements OnInit {
           this.configData.get(field.required)?.value,
           field.label === 'mobile' ? Validators.pattern("^(\\s*|\\s*((\\+91-?)|0)?[0-9]{10}\\s*$)") :
           field.label === 'email' ? Validators.email :
-          field.label === 'name'? Validators.pattern("^(\\s*|\\s*[a-zA-z]+(?: [A-Za-z]*)*\s?$)"):
+          field.label === 'name'? Validators.pattern("^(\\s*|\\s*[a-zA-Z]+(?: [A-Za-z]*)*\s?$)"):
           null
         );
       }
