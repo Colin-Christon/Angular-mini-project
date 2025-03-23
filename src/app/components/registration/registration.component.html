@@ -1,0 +1,46 @@
+<div class="register-container">
+    <h1>Member Registration</h1>  
+     
+      <form [formGroup] ='registerForm' (submit)="onSubmitRegisterationForm()"> 
+            <div *ngFor="let value of fields"> 
+                <div *ngIf="value.show">
+                  <!-- <label [for]="field.label">{{ field.label.charAt(0).toUpperCase() + field.label.slice(1) }}
+                    <span *ngIf="this.configData.get(field.required)?.value">*</span>
+                    </label> -->
+                  <kendo-label
+                    labelCssClass="registration-labels"
+                    [for]="value.label"
+                    [text]="value.label">
+
+                    <span *ngIf="value.required">*</span>
+                  </kendo-label>
+
+                  <input 
+                  *ngIf="value.type !== 'textarea'" 
+                  [type]="value.type" 
+                  [formControlName]="value.label" 
+                  [placeholder]="value.label"
+                  (input)="value.label==='Mobile'? formatMobileNumber($event):null"
+                  [maxlength]="value.label === 'Mobile' ? 13 : null" />
+
+                  <textarea 
+                    *ngIf="value.type === 'textarea'" 
+                    [formControlName]="value.label" 
+                    [placeholder]="value.label" 
+                    rows="4">
+                  </textarea>
+
+                  <div class="error-message" *ngIf="registerForm.get(value.label)?.invalid && registerForm.get(value.label)?.touched">
+                    <span *ngIf="registerForm.get(value.label)?.errors?.['required']">This field is required</span>
+                    <span *ngIf="registerForm.get(value.label)?.errors?.['pattern']">Invalid {{ value.label }}</span>
+                  </div>
+                </div>
+              </div>
+            <div class="form-error" *ngIf="this.buttonDisabled">Please fill all required fields</div>
+            <div class="register-button">
+                <!-- <button type="submit" > Submit</button> -->
+                <!-- <button type="submit"> Submit</button> -->
+                <button type="submit" kendoButton size="large" class="custom-size"> Submit</button>
+            </div>
+        </form>
+</div>

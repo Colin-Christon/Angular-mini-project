@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="configure-container">
+<div class="configure-container">
         <h1>Form Configuration</h1>
-        <form [formGroup]="configForm" (submit)="saveConfiguration()">
+        <form (submit)="saveConfiguration()">
             <div class="form-header">
                 <h5> Show Field</h5>
                 <h5> Required Field</h5>
@@ -34,9 +26,9 @@
                     [attr.data-index]="i">
 
                     <div class="form-fields">
-                        <input type="checkbox" name="field.label" id="field.label" [formControlName]="field.show">
-                        <label>{{field.label.charAt(0).toUpperCase() + field.label.slice(1)}}</label>
-                        <input type="checkbox" name="name-required" id="name-required" [formControlName]="field.required">
+                        <input type="checkbox" [id]="field.label" [name]="field.label" [(ngModel)]="field.show" >
+                        <label class="label-container" [for]="field.label">{{ field.label }}</label>
+                        <input type="checkbox" [id]="'required-' + field.label" [name]="'required-' + field.label" [(ngModel)]="field.required" [disabled]="!field.show">
                     </div>
                 </div>
                 <div class="error-message" *ngIf="!validConfiguration">Please select at least one option.</div>
@@ -45,7 +37,5 @@
                 <!-- <button>Save Changes</button> -->
                 <button kendoButton size="none" class="config-button-custom-size">Save Changes</button>
             </div>
-        </form>
-    </div>
-</body>
-</html>
+    </form>
+</div>

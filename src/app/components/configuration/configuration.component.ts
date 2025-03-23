@@ -1,5 +1,5 @@
 import {  Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DragTargetDragEndEvent, DragTargetDragEvent, DropTargetEvent } from '@progress/kendo-angular-utils/drag-and-drop/events';
 import { SharedServiceService } from 'src/app/services/shared-service.service';
@@ -12,32 +12,18 @@ import '@angular/localize/init';
   styleUrls: ['./configuration.component.scss']
 })
 export class ConfigurationComponent implements OnInit {
-    configForm : FormGroup
-    fields : any[]
+    configForm! : FormGroup
+    fields : any[] = []
     validConfiguration : boolean = true;
   
     constructor(
       private router:Router,
-      private service : SharedServiceService
-    ) {
-        this.configForm = this.service.getConfiguration()   
-        this.fields = JSON.parse(JSON.stringify(this.service.getConfigElementOrder())); 
-     }
+      private service : SharedServiceService,
+      private fb : FormBuilder
+    ) { }
 
-    ngOnInit():void{
-      for(let field of this.fields){
-        if(!this.configForm.get(field.show)?.value){
-          this.configForm.get(field.required)?.disable();
-        }
-        this.configForm.get(field.show)?.valueChanges.subscribe(value => {
-          if (value) {
-            this.configForm.get(field.required)?.enable();
-          } else {
-            // this.configForm.get('requiredName')?.setValue(false);
-            this.configForm.get(field.required)?.disable();
-          }
-        });
-      }
+    ngOnInit():void{ 
+      this.fields = this.service.getConfigElementOrder()  
     }
 
     dragData = ({ dragTarget }: any) => {
@@ -60,32 +46,29 @@ export class ConfigurationComponent implements OnInit {
     onDrop(e: DropTargetEvent): void {
       const fromIndex = e.dragData;
       const toIndex = Number(e.dropTarget.getAttribute("data-index"));
-    
-      if (fromIndex === toIndex) {  
-        e.dropTarget.style.background="white";
-        return; 
-      }
       const movedItem = this.fields[fromIndex];
       this.fields.splice(fromIndex, 1); 
       this.fields.splice(toIndex, 0, movedItem);
     }
 
-    saveConfiguration(){
-      let count = 0; 
+    isConfigurationInvalid():boolean{
+      let count = 0;
       this.fields.forEach(element=>{
-        if(!this.configForm.get(element.show)?.value){
-          count= count+1;
+        if(!element.show){
+          count+=1;
         }
       })
+      return count==this.fields.length;
+    }
 
-      if(count==this.fields.length){
-        this.validConfiguration = false
+    saveConfiguration(){
+      if(this.isConfigurationInvalid()){
+        this.validConfiguration = false;
       }
       else{
-
-        this.service.setConfiguration(this.configForm)
+        alert("Configuration saved successfully");
         this.service.setConfigElementOrder(this.fields)
-        this.router.navigate(['/home/register']);
+        this.router.navigate(['/register']);
       }  
     }
 }

@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { NavbarComponent } from './components/home/navbar/navbar.component';
-import { RegistrationComponent } from './components/home/registration/registration.component';
-import { ConfigurationComponent } from './components/home/configuration/configuration.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { ConfigurationComponent } from './components/configuration/configuration.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragAndDropModule } from "@progress/kendo-angular-utils";
@@ -20,7 +18,6 @@ import { SuccessComponent } from './components/successfulPage/success/success.co
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     NavbarComponent,
     RegistrationComponent,
     ConfigurationComponent,
@@ -36,7 +33,8 @@ import { SuccessComponent } from './components/successfulPage/success/success.co
     HttpClientModule,
     ButtonsModule,
     LabelModule,
-    InputsModule
+    InputsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

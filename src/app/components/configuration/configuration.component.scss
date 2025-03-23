@@ -23,11 +23,12 @@
         }
         .form-body{
             .form-fields{
+                height: 30px;
                 display: flex;
                 justify-content:space-between;
+                align-items: center;
                 padding: 10px;
-                margin: 20px;
-                // background-color: rgb(226, 219, 219);
+                border-bottom: 1px solid grey;
                 input{
                     transform: scale(1.5);
                     accent-color: rgb(13, 13, 17);
@@ -45,6 +46,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 10px;
             margin-bottom: 10px;
             .config-button-custom-size{
                 color: white;
